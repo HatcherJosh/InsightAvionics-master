@@ -1,0 +1,41 @@
+﻿@model InsightAvionics.Models.Update
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-12">
+            <h1 style="text-align:left;padding:5px"><strong> @Html.DisplayFor(model => model.UpdateName)</strong></h1>
+            <h2 style="text-align:left;padding:5px"><em> @Html.DisplayFor(model => model.UpdateHeading)</em></h2>
+            <h6><em>@Html.DisplayFor(model=>model.posted)</em></h6>
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="col-8" style="text-align:left">
+                @Html.Raw(Model.UpdateBody)
+            </div>
+        </div>
+    
+    <div class="row">
+        <div class="col-12" style="margin:auto;width:100%">
+            <div class="container-fluid" style="width:10%">
+                <a href="#top">
+                    <img alt="Top" height="40" src="~/Content/icons/back-top.png" width="100">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+    
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.UpdateID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

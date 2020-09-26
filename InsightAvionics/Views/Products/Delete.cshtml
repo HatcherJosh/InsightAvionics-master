@@ -1,0 +1,48 @@
+﻿@model InsightAvionics.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProdName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdImage)
+        </dt>
+
+        <td>
+            <img src="/Products/RetrieveImage/@Model.ProdID" alt="" height=100 width=200 />
+        </td>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProdDesc)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Dash","ProductUpdateVMs")
+        </div>
+    }
+</div>

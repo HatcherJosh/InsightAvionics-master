@@ -1,0 +1,178 @@
+﻿@model IEnumerable<InsightAvionics.Models.ProductUpdateVM>
+@using InsightAvionics.Models;
+
+@{
+    ViewBag.Title = "Index";
+    List<Update> displayed = new List<Update> { };
+    Product p = new Product();
+}
+
+    <div class="row maincontent">
+        
+        <div class="col-md-12">
+            <p>
+                @Html.ActionLink("Create New Product", "Create", "Products")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        Product Name
+                    </th>
+                    <th>
+                        Product Image
+                    </th>
+                    <th>
+                        Product Description
+                    </th>
+                    <th>
+                        Splash Image
+                    </th>
+                    <th>
+                        Promo Image
+                    </th>
+                    <th>
+                        Shorthand
+                    </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    foreach (var prod in item.Products)
+                    {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => prod.ProdName)
+                    </td>
+                    <td>
+                        <img src="/Products/RetrieveImage/@prod.ProdID" alt="" height=100 width=200 />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => prod.ProdDesc)
+                    </td>
+                    <td>
+                        <img src="/Products/RetrieveImage/@prod.ProdID?type=ProdSplash" alt="" height=100 width=200 />
+                    </td>
+                    <td>
+                        <img src="/Products/RetrieveImage/@prod.ProdID?type=ProdPromo" alt="" height=100 width=200 />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => prod.ProdShort)
+                    </td>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "Products", new { id = prod.ProdID }, "")
+                            @*@Html.ActionLink("Details", "Details","Products", new { id = prod.ProdID },"")*@
+                            <a href="/Products/@prod.ProdShort">Details</a>
+                            @Html.ActionLink("Delete", "Delete", "Products", new { id = prod.ProdID }, "")
+                        </td>
+                    }
+                </tr>
+
+                    }
+                }
+            </table>
+            <p>
+                @Html.ActionLink("Create New Update", "Create", "Updates")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        Update Name
+                    </th>
+                    <th>
+                        Update Image
+                    </th>
+                    <th>
+                        Update Body
+                    </th>
+                    <th>
+                        Update Posted On
+                    </th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    foreach (Update up in item.Updates)
+                    {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => up.UpdateName)
+                    </td>
+                    <td>
+                        <img src="/Updates/RetrieveImage/@up.UpdateID" alt="" height=100 width=200 />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => up.UpdateBlurb)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => up.posted)
+                    </td>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "Updates", new { id = up.UpdateID }, "")
+                            @Html.ActionLink("Details", "Details", "Updates", new { id = up.UpdateID }, "")
+                            @Html.ActionLink("Delete", "Delete", "Updates", new { id = up.UpdateID }, "")
+                        </td>
+                    }
+                </tr>
+                    }
+
+
+                }
+            </table>
+
+            <p>
+                @Html.ActionLink("Create New Side Product", "Create", "SideProducts")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        Product Name
+                    </th>
+                    <th>
+                        Product Image
+                    </th>
+                    <th>
+                        Product Body
+                    </th>
+                    <th>
+                        Shorthand
+                    </th>
+                    <th></th>
+                </tr>
+                @foreach (SideProduct sp in ViewBag.Side)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => sp.SideName)
+                    </td>
+                    <td>
+                        <img src="/SideProducts/RetrieveImage/@sp.SideID" alt="" height=100 width=200 />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => sp.SideBody)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => sp.SideShort)
+                    </td>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "SideProducts", new { id = sp.SideID }, "")
+                            @Html.ActionLink("Details", "Details", "SideProducts", new { id = sp.SideID }, "")
+                            @Html.ActionLink("Delete", "Delete", "SideProducts", new { id = sp.SideID }, "")
+                        </td>
+                    }
+                </tr>
+                 }
+            </table>
+
+        </div>
+
+    </div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<InsightAvionics.Models.Update>
+
+@{
+    ViewBag.Title = "Feed";
+}
+
+<h2>Feed</h2>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+
+
+@foreach (var item in Model)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 style="text-align:left;padding:5px"><strong> @Html.DisplayFor(x => item.UpdateName)</strong></h1>
+                <h2 style="text-align:left;padding:5px"><em> @Html.DisplayFor(x => item.UpdateHeading)</em></h2>
+                <h6><em>@Html.DisplayFor(x => item.posted)</em></h6>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-8" style="text-align:left">
+                @Html.Raw(item.UpdateBody)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12" style="margin:auto;width:100%">
+                <div class="container-fluid" style="width:10%">
+                    <a href="#top">
+                        <img alt="Top" height="40" src="~/Content/icons/back-top.png" width="100">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    if (User.Identity.IsAuthenticated)
+    {
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.UpdateID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.UpdateID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.UpdateID })
+    </td>
+    }
+}
+

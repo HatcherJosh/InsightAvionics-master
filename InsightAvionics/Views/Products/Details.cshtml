@@ -1,0 +1,220 @@
+﻿@model InsightAvionics.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12"><img src="/Products/RetrieveImage/@Model.ProdID?type=ProdSplash" alt="" style="width:100%;padding:10px" /></div>
+            @*<div class="col-3">
+
+
+                <aside class="aside">
+                    <div class="inner-wrapper">
+                        <h3>
+                            <span class="red-text">@Html.DisplayFor(model => model.ProdShort)</span>
+                            <span class="black-text">Quick Links:</span>
+                        </h3>
+                        <p class="auto-style5">
+                            <span class="auto-style10">
+                                <span class="auto-style5">
+                                    Tech Support -
+                                </span> <a href="support.htm">
+                                    <strong>
+                                        <span class="auto-style5">Click Here</span>
+                                    </strong>
+                                </a>
+                            </span>
+                        </p>
+                        <p class="auto-style5">
+                            <span class="auto-style9">Order Page - </span> <a href="ordering.htm">
+                                <strong>
+                                    <span class="auto-style9">Click Here</span>
+                                </strong>
+                            </a>
+                        </p>
+                        <p class="auto-style5">
+                            <span class="auto-style9">Price List - </span><strong>
+                                <a href="pdf%20files/Insight%20Price.pdf" target="_blank">
+                                    <span class="auto-style9">Click Here</span>
+                                </a>
+                            </strong>
+                        </p>
+                        <p class="auto-style5">
+                            Upgrading? - <a href="upgrading.htm">
+                                <strong>
+                                    <span class="auto-style12">Click Here</span>
+                                </strong>
+                            </a>
+                        </p>
+
+                        <p>
+                            Winds Aloft -
+                            <strong>
+                                <a href="tas1000.htm">TAS-1000</a>
+                            </strong>
+                        </p>
+                        <p>
+                            Solo, around the world flight in a Beechcraft
+                            Bonanza -
+                            <strong>
+                                <a href="http://flybluehorizons.com/" target="_blank">
+                                    Must Read
+                                </a>
+                            </strong>
+                        </p>
+                        <p class="auto-style10">
+                            Insight Video -
+                            <strong>
+                                <a href="innovation.htm">Click Here</a>
+                            </strong>
+                        </p>
+                        <hr>
+
+                    </div>
+                </aside>
+                <aside class="aside">
+                    <div class="inner-wrapper">
+                        <h3><span class="red-text">@Html.DisplayFor(model => model.ProdShort)</span> Documentation</h3>
+                        <p class="auto-style5">
+                            <a href="pdf%20files/G3%20Manuals/G%20Series/G4-FMS.pdf" target="_blank">Flight Manual Supplement</a>
+                        </p>
+                        <span class="auto-style5">
+                            <p>
+                                <a href="pdf%20files/G3%20Manuals/G%20Series/G3%20Airworthiness4.pdf" target="_blank">Continued Airworthiness</a>
+                            </p>
+                            <p>
+                                <a href="pdf%20files/G3%20Manuals/G%20Series/G4%20Quick%20Start%20Guide.pdf" target="_blank">
+                                    @Html.DisplayFor(model => model.ProdShort) Quick Start Guide
+                                </a>
+                            </p>
+                            <p>
+                                <a href="pdf%20files/G3%20Manuals/G%20Series/G-Series%20Operation%20v1.4.pdf" target="_blank">Operation Manual</a>
+                            </p>
+                            <p>
+                                <a href="pdf%20files/G3%20Manuals/G%20Series/G-Series%20Install%20v1.4.pdf" target="_blank">Install Manual</a>
+                            </p>
+                            <p>
+                                <a href="pdf%20files/G3%20Manuals/G%20Series/G234T%20Pilot's%20Guide.pdf" target="_blank">Pilot Guide</a>
+                            </p>
+                            <p>
+                                <a href="pdf%20files/G3%20Manuals/G%20Series/G%20Series%20TC%20STC.pdf" target="_blank">TC STC</a>
+                            </p>
+                            <p>
+                                <a href="pdf%20files/G3%20Manuals/G%20Series/FAA%20G1234%20STC.pdf" target="_blank">FAA STC</a>
+                            </p>
+
+                            <hr>
+
+                        </span>
+                    </div>
+                </aside>
+            </div>*@
+            <div class="col-3">
+                <div class="hamburger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <div class="menu">
+                    <div class="menu-item">
+                        Home
+                    </div>
+                    <div class="menu-item">
+                        About
+                    </div>
+
+                    <div class="menu-item">
+                        Contact
+                    </div>                </div>
+            </div>
+
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-8" style="text-align:center">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4"><img src="/Products/RetrieveImage/@Model.ProdID" alt="" style="padding-bottom:15px" /></div>
+
+                    <div class="col-4">
+                        <h1 style="text-align:center;padding:5px"><strong> @Html.DisplayFor(model => model.ProdName)</strong></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    @Html.Raw(Model.ProdBody)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12" style="margin:auto;width:100%">
+                <div class="container-fluid" style="width:10%">
+                    <a href="#top">
+                        <img alt="Top" height="40" src="~/Content/icons/back-top.png" width="100">
+                    </a>
+                </div>
+            </div>
+        </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.ProdID }) |
+                @Html.ActionLink("Back", "Dash", "ProductUpdateVMs")
+            </p>
+        }
+    </div>
+
+<script>
+    $(document).ready(function () {
+
+        var menu = $(".menu");
+        var hamburger = $(".hamburger");
+        var line = $(".line");
+        var menuOpen;
+
+        function openMenu() {
+            menu.css("left", "0px");
+            line.css("background", "#FFF");
+            menuOpen = true;
+        }
+
+        function closeMenu() {
+            menu.css("left", "-320px");
+            line.css("background", "#BCAD90");
+            menuOpen = false;
+        }
+
+        function toggleMenu() {
+            if (menuOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        }
+
+        hamburger.on({
+            mouseenter: function () {
+                openMenu();
+            }
+        });
+
+        menu.on({
+            mouseleave: function () {
+                closeMenu();
+            }
+
+        });
+
+        hamburger.on({
+            click: function () {
+                toggleMenu();
+            }
+        })
+
+
+
+    });
+</script>

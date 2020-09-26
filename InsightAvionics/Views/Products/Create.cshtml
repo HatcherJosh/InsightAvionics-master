@@ -1,0 +1,154 @@
+﻿@model InsightAvionics.Models.Product
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Create</h2>
+
+    @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { id = "my_form", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Product</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProdName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProdName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProdName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProdShort, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProdShort, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProdShort, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProdBody, new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-9">
+                    @Html.TextAreaFor(model => model.ProdBody, new { @class = "form-control", @row = 5 })
+                    @*@Html.TextAreaFor(m => m.ProdBody)*@
+                    @Html.ValidationMessageFor(m => m.ProdBody, "", new { @class = "error" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProdDesc, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ProdDesc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ProdDesc, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProdImage, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" name="ImageData" id="ImageData" onchange="fileCheck(this);" />
+                        @Html.ValidationMessageFor(model => model.ProdImage)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProdSplash, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" name="ImageDataSplash" id="ImageDataSplash" onchange="fileCheck(this);" />
+                        @Html.ValidationMessageFor(model => model.ProdSplash)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProdPromo, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" name="ImageDataPromo" id="ImageDataPromo" onchange="fileCheck(this);" />
+                        @Html.ValidationMessageFor(model => model.ProdPromo)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Dash", "ProductUpdateVMs")
+    </div>
+
+
+</body>
+@Scripts.Render("~/bundles/jquery")
+<script src="https://cdn.tiny.cloud/1/gmk620ukc241j6f9mof62ppovl6deoeaplyiugixvd22uics/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+@*<script src="https://cdn.tiny.cloud/1/API_KEY/tinymce/5/tinymce.min.js"></script>*@
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        menubar: ' edit view insert format tools table',
+        height: 400,
+        width: 1000,
+        toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist  | forecolor backcolor removeformat | emoticons | fullscreen  | image media  link | code',
+        plugins: 'code importcss  searchreplace autolink   visualblocks visualchars fullscreen image link media   codesample table charmap hr  nonbreaking anchor toc insertdatetime advlist lists  wordcount   imagetools textpattern noneditable   charmap   quickbars  emoticons',
+        contextmenu: "link image imagetools table",
+        image_advtab: true,
+        toolbar_sticky: true,
+        images_upload_url: '/Products/UploadImage',
+        paste_data_images: true,
+        automatic_uploads: true,
+    });
+</script>
+@*<script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'image code',
+            
+            toolbar: 'undo redo | link image | code',
+            /* enable title field in the Image dialog*/
+            image_title: true,
+            /* enable automatic uploads of images represented by blob or data URIs*/
+            
+            /*
+            /* without images_upload_url set, Upload tab won't show up*/
+            paste_data_images: true,
+
+            images_upload_url: '/Products/UploadImage',
+            images_upload_base_path: '/some/basepath',
+
+            file_picker_types: 'image',
+            /* and here's our custom image picker*/
+
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        });
+        //$(document).on('focusin', function (e) {
+        //    if ($(e.target).closest(".tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
+        //        e.stopImmediatePropagation();
+        //    }
+        //});
+
+    </script>*@
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

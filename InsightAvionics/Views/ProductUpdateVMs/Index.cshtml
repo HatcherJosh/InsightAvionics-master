@@ -1,0 +1,173 @@
+﻿@model IEnumerable<InsightAvionics.Models.ProductUpdateVM>
+@using InsightAvionics.Models;
+
+@{
+    ViewBag.Title = "Index";
+    List<Update> displayed = new List<Update> { };
+}
+
+    <div class="row">
+        <div class="col-12"></div>
+        <div class="jumbotron" style="background-position:50% 85%; background-image: url('../../Assets/jumbotron.jpg')">
+            <div class="splashcontainer">
+                <div class="row">
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-4 jumbocontent">
+                        <h3><strong>About Insight</strong></h3>
+                        <p>
+                            The worlds first Graphic Engine Monitor was unveiled at the 1981 American Bonanza Society convention triggered a demand for the revolutionary GEM.  Insight Instrument Corporation has rapidly become the new standard in engine monitors.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+@*<section id="hero" class="d-flex align-items-center">
+        <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
+            <h1>Your New Online Presence with Bethany</h1>
+            <h2>We are team of talanted designers making websites with Bootstrap</h2>
+            <a href="#about" class="btn-get-started scrollto">Get Started</a>
+        </div>
+    </section>*@
+
+<!-- End Hero -->
+
+<div class="headings">
+    <div class="row">
+        <div class="col-8">
+            <h2><strong>Find Your Engine Monitor</strong></h2>
+        </div>
+        <div class="col-4">
+            <h2><strong>News & Updates</strong></h2>
+        </div>
+    </div>
+</div>
+
+<div class="row maincontent">
+
+    <div class="col-md-8">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                foreach (var prod in item.Products)
+                {
+
+                    <div class="col-md-6">
+
+                        <div class="row">
+                            <div class="col">
+
+                                @*<div><img class=" img-fluid" src=@Html.DisplayFor(modelItem => prod.ProdImage)></div>*@
+                                <div><img class="img-fluid" src="/Products/RetrieveImage/@prod.ProdID" alt="" height=100 width=200 /></div>
+
+
+                                <h3>@Html.DisplayFor(modelItem => prod.ProdName)</h3>
+
+                                @*<p>@Html.DisplayFor(modelItem => prod.ProdDesc)</p>*@
+
+                                <ul>
+                                    @foreach (string s in prod.ProdBlurb)
+                                    {
+                                        if (!s.IsEmpty())
+                                        {
+                                            <li>
+                                                <p>
+                                                    <strong>@Html.Raw(s)</strong>
+                                                </p>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+
+                                @*<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>*@
+                                <p><a class="btn btn-default" href='@Url.Action("Details", "Products", new { id = prod.ProdID })'>Learn more &raquo;</a></p>
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <p>
+                                        @Html.ActionLink("Edit", "Edit", "Products", new { id = prod.ProdID }, null) |
+                                        @Html.ActionLink("Details", "Details", "Products", new { id = prod.ProdID }, null)  |
+                                        @Html.ActionLink("Delete", "Delete", "Products", new { id = prod.ProdID }, null)
+                                    </p>
+                                }
+
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="col-md-4 newscontent">
+
+        @foreach (var item in Model)
+        {
+
+            foreach (Update update in item.Updates)
+            {
+                displayed.Add(update);
+            }
+        }
+
+        @{
+            displayed.Sort(delegate (Update x, Update y)
+            {
+                return y.posted.CompareTo(x.posted);
+            });
+        }
+
+        @for (int i = 0; i < 2; i++)
+        {
+
+            Update up = displayed.ElementAt(i);
+
+            <h2>@Html.DisplayFor(modelItem => up.UpdateName)</h2>
+
+            <div>
+
+                <img class="img-fluid" align="left" src=@Html.DisplayFor(modelItem => up.UpdateImage)>
+                <sub>Posted on: @Html.DisplayFor(modelItem => up.posted)</sub>
+
+                <p>@Html.DisplayFor(modelItem => up.UpdateBlurb)</p>
+
+                <!--<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>-->
+                <p><a class="btn btn-default" href='@Url.Action("Details", "Updates", new { id = up.UpdateID })'>Learn more &raquo;</a></p>
+
+            </div>
+
+            if (User.Identity.IsAuthenticated)
+            {
+                <p>
+                    @Html.ActionLink("Edit", "Edit", "Updates", new { id = up.UpdateID }, null) |
+                    @Html.ActionLink("Details", "Details", "Updates", new { id = up.UpdateID }, null)  |
+                    @Html.ActionLink("Delete", "Delete", "Updates", new { id = up.UpdateID }, null)
+                </p>
+
+            }
+        }
+
+        <div class="col-md-12 techsupport">
+            <h2>Tech Support</h2>
+            <p>
+                Need Help? Reach out to us by:<br/>
+                Phone:  905-871-0733<br/>
+                Fax:    905-871-5460<br/>
+                Email:   techsupport@insightavionics.com<br/>
+                <sub>Saturdays, Sundays, and  federal holidays please leave a message. A customer service representative will contact you within 24 hours of the first business day</sub>
+            </p>
+            <h2>Documentation</h2>
+            <p>View, print, or download any manual or STC you need <a href="google.ca">here</a></p>
+
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+

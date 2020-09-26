@@ -1,0 +1,55 @@
+﻿@model IEnumerable<InsightAvionics.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProdName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProdImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProdDesc)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProdName)
+    </td>
+    <td>
+        <img src="/Products/RetrieveImage/@item.ProdID" alt="" height=100 width=200 />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProdDesc)
+    </td>
+    <td>
+        <img src="/Products/RetrieveImage/@item.ProdID?type=ProdSplash" alt="" height=100 width=200 />
+    </td>
+    <td>
+        <img src="/Products/RetrieveImage/@item.ProdID?type=ProdPromo" alt="" height=100 width=200 />
+    </td>
+    @if (User.Identity.IsAuthenticated)
+    {x
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ProdID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ProdID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ProdID })
+        </td>
+    }
+</tr>
+}
+
+</table>

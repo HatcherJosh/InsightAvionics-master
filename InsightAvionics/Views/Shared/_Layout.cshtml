@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("head", required: false)
+
+</head>
+<body>
+    <header id="header" class="d-flex align-items-center">
+
+        <div class="container-fluid" style="background-color:#006699">
+            <div class="header-container header d-flex align-items-center">
+                <div class="logo mr-auto">
+                    @*<h1 class="text-light"><a href="index.html"><span>Insight Avionics</span></a></h1>*@
+                    @*Uncomment below if you prefer to use an image logo*@
+                    <a href="/ProductUpdateVMs"><img src="~/Assets/logo.png" alt="Insight" class="img-fluid" style="min-height:125px"></a>
+                </div>
+
+                <nav class="nav-menu d-none d-lg-block headerlinks">
+
+                    @*BIG MENU STARTS HERE*@
+                    <ul>
+
+                        <div class="navbar navbar-inverse" style="color:#006699">
+                            <div class="dropdown">
+
+                                <li class="active"><button onclick="location.href='@Url.Action("Index","ProductUpdateVMs")';return false;" class="btn btn-primary" style="max-height:28px" type="button" data-toggle="dropdown">Home</button></li>
+
+                            </div>
+                            |
+                            <div class="dropdown">
+                                <span class="caret"></span><button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Selecting</button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="monitors.htm"><strong>The Right Engine Monitor</strong></a></li>
+                                    <li><a href="gseries.htm"><strong>Monitors For Lean Of Peak</strong></a></li>
+                                    <li><a href="bestg4.htm">G4 3.125" Engine Monitor</a></li>
+                                    <li><a href="bestg4t.htm">G4 Twin 3.125" Monitor</a></li>
+                                    <li><a href="g9.htm">G9 Radial Monitor</a></li>
+                                    <li><a href="bestg3.htm">G3 Engine Monitor</a></li>
+                                    <li><a href="bestg2.htm">G2 Engine Monitor</a></li>
+                                    <li><a href="bestg1.htm">G1 Engine Monitor</a></li>
+                                    <li><a href="gh.htm">G Series Helicopter</a></li>
+                                    <li><a href="yards.htm">Get Full 9 Yards</a></li>
+                                    <li><a href="tandem.htm">G Series Tandem Display</a></li>
+                                    <li><a href="probesensors.htm">Probes-Sensors</a></li>
+                                    <li><a href="strikefinder.htm">Strike Finder</a></li>
+                                    <li><a href="tas1000.htm">TAS-MFDS</a></li>
+                                    <li><a href="mu2.htm">MU-2 Torque Knee</a></li>
+                                    <li><a href="gyro4000.htm" target="_blank">Learjet Heading Gyro</a></li>
+                                    <li><a href="catalog.htm"><strong>Product Catalog</strong></a></li>
+                                    <li><a href="photo-slideshow.htm">Slide Show</a></li>
+                                </ul>
+                            </div>
+                            |
+                            <div class="dropdown">
+                                <span class="caret"></span><button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Technical Support</button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="documentation.htm">
+                                            <strong>Documentation</strong>
+                                        </a>
+                                    </li>
+                                    <li><a href="support.htm"><strong>Technical Links</strong></a></li>
+                                    <li><a href="gseriessoftware.htm"><strong>Software Upgrades</strong></a></li>
+                                    <li><a href="upgrading.htm"><strong>Upgrading Old Monitor</strong></a></li>
+                                    <li><a href="functions.htm">Comparison Chart</a></li>
+                                    <li><a href="probesensors.htm">Probes-Sensors</a></li>
+                                    <li><a href="accessories.htm">Accessories</a></li>
+                                    <li><a href="return.htm">Return Form</a></li>
+                                    <li><a href="warranty.htm">Warranty</a></li>
+                                </ul>
+                            </div>
+                            |
+                            <div class="dropdown">
+                                <span class="caret"></span><button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Contact Insight</button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="request.htm"><strong>Request Info Form</strong></a></li>
+                                    <li><a href="contact-info.htm">Contact Info</a></li>
+                                    <li><a href="location.htm">Insight's Location</a></li>
+                                    <li><a href="aboutinsight.htm">About Insight</a></li>
+                                    <li><a href="patents.htm">Patents Of Innovation</a></li>
+                                </ul>
+                            </div>
+            
+                            <div class="dropdown">
+                                <span class="caret"></span><button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Order Forms / Show Specials / Videos</button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="ordering.htm"><strong>PDF Ordering Forms</strong></a></li>
+                                    <li><a href="pdf%20files/Insight%20Price.pdf" target="_blank">Price List</a></li>
+                                    <li><a href="specials.htm"><strong>Insight Specials</strong></a></li>
+                                    <li><a href="patents.htm">Patents</a></li>
+                                    <li><a href="innovation.htm">Insight Videos</a></li>
+                                    <li><a href="news.htm">News</a></li>
+                                    <li><a href="feedback.htm">Pilot Feedback</a></li>
+                                    <li><a href="press.htm">Press Releases</a></li>
+                                    <li><a href="insightdealers.htm">Insight Dealers</a></li>
+                                    <li><a href="4sale.htm">For Sale</a></li>
+                                    <li><a href="sitemap.htm">Site Map</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </ul> <!--list of lists-->
+                </nav><!-- .nav-menu -->
+            </div><!-- End Header Container -->
+        </div>
+    </header>
+
+    <div class="container-fluid" style="background-color:#006699">
+        <div class="container body-content">
+            @RenderBody()
+            @*<hr />*@
+        </div>
+        <div class="row">
+            <footer id="footer">
+                <div class="row">
+                    <div class="col-6">
+                        <div style="text-align:center">
+                            <img src="~/Assets/logo.png" alt="Insight" class="img-fluid">
+                            </br>
+                            <p style="color:#006699"><strong>Copyright Insight Instrument Corporation. All Rights Reserved.</br> &copy; @DateTime.Now.Year</strong></p>
+                        </div>
+                    </div>
+                    <div class="col-2">
+
+                    </div>
+                    
+                    <div class="col-4">
+
+                        <h3><strong>Contact Us</strong></h3>
+                        
+                        <p>
+                            <strong>
+                                599 Industrial Dr. Fort Erie ON Canada L2A 5M1<br />
+                                905.871.0733<br />
+                                sales@insightavionics.com
+                            </strong>
+                        </p>
+
+                    </div>
+
+                </div>
+                @Html.Partial("_LoginPartial") @Html.ActionLink("Dash", "Dash", "ProductUpdateVMs")
+            </footer>
+        </div>
+    </div>
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
